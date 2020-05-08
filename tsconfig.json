@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ES5",
+      "ES6",
+      "ES7"
+    ]
+  }
+}
