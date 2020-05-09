@@ -35,4 +35,19 @@
         }
     };
     lzy.say('hi ');
+    function createRect(config) {
+    }
+    var config = {
+        width: 100,
+        height: 100
+    };
+    var mySquare = createRect(config);
+    var add = (function () {
+        var x = function (c, d) {
+            return c + d;
+        };
+        x.逆运算 = function (c, d) {
+            return c - d;
+        };
+    })();
 }

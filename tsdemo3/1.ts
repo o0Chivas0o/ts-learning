@@ -33,15 +33,15 @@
 
     // 接口
     interface Shape {
-        body: string,
+        body: string
         head: string
     }
 
     interface Human {
-        readonly name: string,
-        age: number,
-        shape: Shape,
-        hobbits?: Array<string>,
+        readonly name: string
+        age: number
+        shape: Shape
+        hobbits?: Array<string>
 
         say(word: string): void
     }
@@ -60,4 +60,42 @@
     }
 
     lzy.say('hi ')
+
+    // 接口 创建长方形
+    interface RectConfig {
+        width?: number
+        height?: number
+
+        [propName: string]: number
+    }
+
+    function createRect(config: RectConfig): void {
+
+    }
+
+    let config = {
+        width: 100,
+        height: 100
+    }
+
+    let mySquare = createRect(config)
+
+    interface 二则运算 {
+        (a: number, b: number): number
+
+        逆运算(a: number, b: number): number
+    }
+
+    let add: 二则运算 = (
+        (): 二则运算 => {
+            let x: any = function (c: number, d: number): number {
+                return c + d
+            }
+
+            x.逆运算 = function (c: number, d: number): number {
+                return c - d
+            }
+        }
+    )()
+
 }
