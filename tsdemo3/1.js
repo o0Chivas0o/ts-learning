@@ -42,12 +42,14 @@
         height: 100
     };
     var mySquare = createRect(config);
-    var add = (function () {
-        var x = function (c, d) {
-            return c + d;
+    var fn = (function () {
+        var x = function (a, b) {
+            return a + b;
         };
-        x.逆运算 = function (c, d) {
-            return c - d;
+        x.inverseOperation = function (a, b) {
+            return a - b;
         };
+        return x;
     })();
+    console.log(fn(1, 2));
 }

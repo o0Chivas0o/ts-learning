@@ -80,22 +80,22 @@
 
     let mySquare = createRect(config)
 
-    interface 二则运算 {
+    interface SecondOperation {
         (a: number, b: number): number
 
-        逆运算(a: number, b: number): number
+        inverseOperation(a: number, b: number): number
     }
 
-    let add: 二则运算 = (
-        (): 二则运算 => {
-            let x: any = function (c: number, d: number): number {
-                return c + d
-            }
-
-            x.逆运算 = function (c: number, d: number): number {
-                return c - d
-            }
+    let fn: SecondOperation = ((): SecondOperation => {
+        let x: any = function (a: number, b: number): number {
+            return a + b
         }
-    )()
 
+        x.inverseOperation = function (a: number, b: number): number {
+            return a - b
+        }
+        return x
+    })()
+
+    console.log(fn(1, 2))
 }
