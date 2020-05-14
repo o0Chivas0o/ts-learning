@@ -2,7 +2,7 @@
   <div id="app">
     <div class="inner">
       <newTodo @addTodo="addTodo"></newTodo>
-      <TodoList :list="list"></TodoList>
+      <TodoList :list="list" @updateTodo="updateTodo"></TodoList>
     </div>
   </div>
 </template>
@@ -14,28 +14,32 @@
     // import {MyMixin} from "./mixins/mixin-one";
 
     import NewTodo from "./components/newTodo.vue";
-    import TodoList from "./components/todoList.vue";
-
-    interface Todo {
-        name: string;
-        status: 'done' | 'undone' | 'deleted';
-    }
+    import TodoList from "./components/TodoList.vue";
+    import Todo from './models/Todo'
 
     @Component({
         components: {
             NewTodo, TodoList
+        },
+        watch: {
+            list(newValue: Array<Todo>) {
+                localStorage.setItem('data', JSON.stringify(newValue));
+            }
         }
     })
     export default class App extends Vue {
-        list: Array<Todo> = [
-            {name: 'mission-1', status: 'done'},
-            {name: 'mission-2', status: 'done'}
-        ]
+        list: Array<Todo> = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data') as string) : []
 
         addTodo(name: string) {
-            const todo: Todo = {name, status: 'undone'}
+            const todo: Todo = {name: name, status: 'undone'}
             this.list.push(todo)
-            console.log(name);
+        }
+        updateTodo(todo: Todo, part: Partial<Todo>) {
+            const index: number = this.list.indexOf(todo)
+            const newTodo: Todo = Object.assign({}, todo, part);
+            console.log(todo, part, index);
+
+            this.list.splice(index, 1, newTodo)
         }
     }
 </script>
