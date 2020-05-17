@@ -37,8 +37,6 @@
         updateTodo(todo: Todo, part: Partial<Todo>) {
             const index: number = this.list.indexOf(todo)
             const newTodo: Todo = Object.assign({}, todo, part);
-            console.log(todo, part, index);
-
             this.list.splice(index, 1, newTodo)
         }
     }
